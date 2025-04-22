@@ -1,0 +1,6 @@
+data/
+logs/
+pgadmin-config/
+pgadmin-data/
+pg_hba.conf
+postgresql.conf

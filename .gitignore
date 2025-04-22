@@ -1,0 +1,10 @@
+# Ignore Docker files
+docker-compose.yml
+
+# Ignore global database files
+database/data/
+database/logs/
+database/pgadmin-config/
+database/pgadmin-data/
+database/pg_hba.conf
+database/postgresql.conf
