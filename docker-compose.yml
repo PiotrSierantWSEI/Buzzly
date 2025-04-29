@@ -1,0 +1,44 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: Buzzly_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      PGDATA: ${PGDATA}
+    volumes:
+      - ./database/data:/var/lib/postgresql/data
+      - ./database/logs:/var/log/postgresql
+      - ./database/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./database/pg_hba.conf:/etc/postgresql/pg_hba.conf
+      # --- Inicjalizacja SQL z pliku ---
+      - ./database/buzzly-init.sql:/docker-entrypoint-initdb.d/buzzly-init.sql
+    ports:
+      - "5432:5432"
+    command:
+      [
+        "postgres",
+        "-c",
+        "config_file=/etc/postgresql/postgresql.conf",
+        "-c",
+        "hba_file=/etc/postgresql/pg_hba.conf",
+      ]
+
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_CONFIG_SERVER_MODE: ${PGADMIN_CONFIG_SERVER_MODE}
+    ports:
+      - "5050:80"
+    volumes:
+      - ./database/pgadmin-data:/var/lib/pgadmin
+      - ./database/pgadmin-config/servers.json:/pgadmin4/servers.json
+      - ./database/pgadmin-config/.pgpass:/pgpass
+    depends_on:
+      - postgres
