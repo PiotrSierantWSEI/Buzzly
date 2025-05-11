@@ -1,3 +1,4 @@
+import { AddProductForm } from "@/components/forms/AddProductForm"
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_auth/dodaj-produkt')({
@@ -5,5 +6,5 @@ export const Route = createFileRoute('/_auth/dodaj-produkt')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/_auth/dodaj-produkt"!</div>
+  return <AddProductForm />
 }

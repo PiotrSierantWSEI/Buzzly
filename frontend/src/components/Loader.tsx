@@ -7,8 +7,8 @@ export const LoaderAuth = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate()
   const pathname = window.location.pathname
   const isLoginOrRegister = pathname === '/logowanie' || pathname === '/rejestracja'
-  console.log('isLoginOrRegister', isLoginOrRegister)
-  if (isLoading) {
+  
+  if (isLoading && !isLoginOrRegister) {
     return (
       <div className="flex items-center justify-center h-screen">
         <LoaderIcon className="animate-spin" />
