@@ -1,5 +1,5 @@
 using Swashbuckle.AspNetCore.Filters;
-using api.DTOs;   // przestrzeń nazw, gdzie jest Twój LoginDto
+using api.DTOs;
 
 namespace api.SwaggerExamples
 {

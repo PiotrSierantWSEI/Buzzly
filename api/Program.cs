@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Swashbuckle.AspNetCore.Filters;
 using api.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,7 +64,23 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+  {
+      options.SuppressModelStateInvalidFilter = true;
+      options.InvalidModelStateResponseFactory = context =>
+      {
+          var payload = new ErrorDetails
+          {
+              Status = StatusCodes.Status400BadRequest,
+              Message = "Nieprawidłowe dane wejściowe.",
+          };
+
+          return new BadRequestObjectResult(payload);
+      };
+  });
+
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>
