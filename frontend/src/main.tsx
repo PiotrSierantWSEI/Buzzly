@@ -7,6 +7,7 @@ import { routeTree } from './routeTree.gen'
 
 import './styles.css'
 import reportWebVitals from './reportWebVitals.ts'
+import { ErrorPage, NotFoundPage } from "./components/Boundaries.tsx"
 
 // Create a new router instance
 const router = createRouter({
@@ -16,6 +17,8 @@ const router = createRouter({
   scrollRestoration: true,
   defaultStructuralSharing: true,
   defaultPreloadStaleTime: 0,
+  defaultNotFoundComponent: () => <NotFoundPage />,
+  defaultErrorComponent: ({ error }) => <ErrorPage error={error} />,
 })
 
 // Register the router instance for type safety

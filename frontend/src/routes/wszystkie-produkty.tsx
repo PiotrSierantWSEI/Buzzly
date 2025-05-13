@@ -1,30 +1,47 @@
 import { createFileRoute } from '@tanstack/react-router'
-import type { PostType } from './produkt.$produktId'
+import { apiRequest } from '@/lib/axios'
+import { SkeletonCard } from '@/components/skeletons/skeleton-card'
+import { ProductCard } from '@/components/ProductCard'
+
+export interface Product {
+  id: number
+  name: string
+  title: string
+  author: string
+  price: number
+  cover_image_url: string
+  created_at: string
+}
 
 export const Route = createFileRoute('/wszystkie-produkty')({
   component: WszystkieProduktyPage,
+  pendingComponent: () => (
+    <div className="flex flex-row flex-wrap gap-8 p-8">
+      {Array.from({ length: 8 }).map((_, index) => (
+        <SkeletonCard key={index} />
+      ))}
+    </div>
+  ),
   loader: async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-    if (!res.ok) {
-      throw new Error('Failed to fetch posts')
+    try {
+      const fetchedProducts = await apiRequest<Array<Product>>(
+        '/api/products',
+        'GET',
+      )
+      return fetchedProducts
+    } catch (err: any) {
+      console.error('Error fetching products:', err)
+      throw err
     }
-
-    const products = (await res.json()) as Array<PostType>
-
-    return products
   },
 })
 
 function WszystkieProduktyPage() {
-  const products: Array<PostType> = Route.useLoaderData()
+  const products: Array<Product> = Route.useLoaderData()
   return (
-    <div>
-      wszystkie-produkty
-      {products?.map((product) => (
-        <div key={product.id}>
-          <h2>{product.title}</h2>
-          <p>{product.body}</p>
-        </div>
+    <div className="flex flex-row flex-wrap gap-8 p-8">
+      {products.map((product: Product) => (
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   )

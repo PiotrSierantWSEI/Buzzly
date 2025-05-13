@@ -12,7 +12,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { AlertCircle } from 'lucide-react'
+import { AlertCircle, LoaderIcon } from 'lucide-react'
 import { useAuth } from '@/providers/AuthProviders'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { FieldInfo } from './FieldInfo'
@@ -122,7 +122,7 @@ export function LoginForm({
                     className="w-full"
                     disabled={!canSubmit || isSubmitting || isLoading}
                   >
-                    {isSubmitting || isLoading ? 'Ładowanie…' : 'Zaloguj się'}
+                    {isSubmitting || isLoading ? <LoaderIcon className="animate-spin" /> : 'Zaloguj się'}
                   </Button>
                 )}
               </form.Subscribe>

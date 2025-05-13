@@ -17,7 +17,7 @@ import { Route as LogowanieImport } from './routes/logowanie'
 import { Route as ModeratorImport } from './routes/_moderator'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
-import { Route as ProduktProduktIdImport } from './routes/produkt.$produktId'
+import { Route as ProduktSlugImport } from './routes/produkt.$slug'
 import { Route as ModeratorPanelModeracjiImport } from './routes/_moderator.panel-moderacji'
 import { Route as AuthDodajProduktImport } from './routes/_auth.dodaj-produkt'
 import { Route as AuthAdminImport } from './routes/_auth.admin'
@@ -58,9 +58,9 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ProduktProduktIdRoute = ProduktProduktIdImport.update({
-  id: '/produkt/$produktId',
-  path: '/produkt/$produktId',
+const ProduktSlugRoute = ProduktSlugImport.update({
+  id: '/produkt/$slug',
+  path: '/produkt/$slug',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -149,11 +149,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModeratorPanelModeracjiImport
       parentRoute: typeof ModeratorImport
     }
-    '/produkt/$produktId': {
-      id: '/produkt/$produktId'
-      path: '/produkt/$produktId'
-      fullPath: '/produkt/$produktId'
-      preLoaderRoute: typeof ProduktProduktIdImport
+    '/produkt/$slug': {
+      id: '/produkt/$slug'
+      path: '/produkt/$slug'
+      fullPath: '/produkt/$slug'
+      preLoaderRoute: typeof ProduktSlugImport
       parentRoute: typeof rootRoute
     }
   }
@@ -194,7 +194,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthAdminRoute
   '/dodaj-produkt': typeof AuthDodajProduktRoute
   '/panel-moderacji': typeof ModeratorPanelModeracjiRoute
-  '/produkt/$produktId': typeof ProduktProduktIdRoute
+  '/produkt/$slug': typeof ProduktSlugRoute
 }
 
 export interface FileRoutesByTo {
@@ -206,7 +206,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AuthAdminRoute
   '/dodaj-produkt': typeof AuthDodajProduktRoute
   '/panel-moderacji': typeof ModeratorPanelModeracjiRoute
-  '/produkt/$produktId': typeof ProduktProduktIdRoute
+  '/produkt/$slug': typeof ProduktSlugRoute
 }
 
 export interface FileRoutesById {
@@ -220,7 +220,7 @@ export interface FileRoutesById {
   '/_auth/admin': typeof AuthAdminRoute
   '/_auth/dodaj-produkt': typeof AuthDodajProduktRoute
   '/_moderator/panel-moderacji': typeof ModeratorPanelModeracjiRoute
-  '/produkt/$produktId': typeof ProduktProduktIdRoute
+  '/produkt/$slug': typeof ProduktSlugRoute
 }
 
 export interface FileRouteTypes {
@@ -234,7 +234,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/dodaj-produkt'
     | '/panel-moderacji'
-    | '/produkt/$produktId'
+    | '/produkt/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -245,7 +245,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/dodaj-produkt'
     | '/panel-moderacji'
-    | '/produkt/$produktId'
+    | '/produkt/$slug'
   id:
     | '__root__'
     | '/'
@@ -257,7 +257,7 @@ export interface FileRouteTypes {
     | '/_auth/admin'
     | '/_auth/dodaj-produkt'
     | '/_moderator/panel-moderacji'
-    | '/produkt/$produktId'
+    | '/produkt/$slug'
   fileRoutesById: FileRoutesById
 }
 
@@ -268,7 +268,7 @@ export interface RootRouteChildren {
   LogowanieRoute: typeof LogowanieRoute
   RejestracjaRoute: typeof RejestracjaRoute
   WszystkieProduktyRoute: typeof WszystkieProduktyRoute
-  ProduktProduktIdRoute: typeof ProduktProduktIdRoute
+  ProduktSlugRoute: typeof ProduktSlugRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -278,7 +278,7 @@ const rootRouteChildren: RootRouteChildren = {
   LogowanieRoute: LogowanieRoute,
   RejestracjaRoute: RejestracjaRoute,
   WszystkieProduktyRoute: WszystkieProduktyRoute,
-  ProduktProduktIdRoute: ProduktProduktIdRoute,
+  ProduktSlugRoute: ProduktSlugRoute,
 }
 
 export const routeTree = rootRoute
@@ -297,7 +297,7 @@ export const routeTree = rootRoute
         "/logowanie",
         "/rejestracja",
         "/wszystkie-produkty",
-        "/produkt/$produktId"
+        "/produkt/$slug"
       ]
     },
     "/": {
@@ -337,8 +337,8 @@ export const routeTree = rootRoute
       "filePath": "_moderator.panel-moderacji.tsx",
       "parent": "/_moderator"
     },
-    "/produkt/$produktId": {
-      "filePath": "produkt.$produktId.tsx"
+    "/produkt/$slug": {
+      "filePath": "produkt.$slug.tsx"
     }
   }
 }

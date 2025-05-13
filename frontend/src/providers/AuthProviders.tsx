@@ -4,6 +4,7 @@ import type { ApiError } from "@/types/ErrorAPI"
 import { onLogoutEvent } from "@/lib/logout-emitter"
 import { useNavigate } from '@tanstack/react-router'
 
+type UserRole = 'USER' | 'MODERATOR' | 'ADMIN'
 /**
  * Typ użytkownika.
  */
@@ -11,7 +12,7 @@ export interface User {
   id: string
   username: string
   email: string
-  role: string
+  role: UserRole
 }
 
 export interface UserResponse {
