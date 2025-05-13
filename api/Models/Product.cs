@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Models;
 
+[Index("name", Name = "product_name_key", IsUnique = true)]
 public partial class Product
 {
     [Key]

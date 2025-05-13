@@ -42,7 +42,19 @@ namespace api.DTOs
         public string Author { get; set; } = null!;
         public string? Description { get; set; }
         public decimal Price { get; set; }
+        [JsonPropertyName("cover_image_url")]
         public string? CoverImageUrl { get; set; }
+        [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; set; }
+    }
+    public class ProductsResponseDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
+        public string Title { get; set; } = null!;
+        public string Author { get; set; } = null!;
+        public decimal Price { get; set; }
+        [JsonPropertyName("cover_image_url")]
+        public string? CoverImageUrl { get; set; }
     }
 }
