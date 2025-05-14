@@ -5,6 +5,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AuthProvider } from '@/providers/AuthProviders'
 import { ThemeProvider } from "@/providers/ThemeProvider"
 import { ModeToggle } from "@/components/ModeToggle"
+import Footer from "@/components/Footer"
 
 export const Route = createRootRoute({
   component: () => (
@@ -17,6 +18,7 @@ export const Route = createRootRoute({
               <ModeToggle />
               <SidebarTrigger />
               <Outlet />
+              <Footer />
             </main>
           </SidebarProvider>
         </AuthProvider>

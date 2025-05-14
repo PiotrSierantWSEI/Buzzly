@@ -1,45 +1,48 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from '@/components/ui/card'
 import {
   RocketIcon,
   ShieldCheckIcon,
   ZapIcon,
   BarChartIcon,
-} from "lucide-react";
+} from 'lucide-react'
 
 const features = [
   {
     icon: RocketIcon,
-    title: "Fast Performance",
+    title: 'Moderacja treści',
     description:
-      "Optimized for speed and efficiency, ensuring your application runs smoothly.",
+      'Pełna lista wszystkich recenzji w jednym panelu – żadnych rozsianych plików czy maili.',
   },
   {
     icon: ShieldCheckIcon,
-    title: "Secure by Default",
-    description: "Built-in security features to protect your data and users.",
+    title: 'Centralne zarządzanie',
+    description:
+      'Zatwierdzaj, odrzucaj, poprawiaj lub usuwaj recenzje jednym kliknięciem.',
   },
   {
     icon: ZapIcon,
-    title: "Easy Integration",
-    description: "Simple to integrate with your existing tools and workflows.",
+    title: 'Analiza',
+    description:
+      '	Średnia ocena, liczba opinii, trendy w czasie – wszystko w formie czytelnych wykresów.',
   },
   {
     icon: BarChartIcon,
-    title: "Analytics",
-    description: "Detailed insights and metrics to track your progress.",
+    title: 'Akcje zbiorcze',
+    description:
+      'Masowe zatwierdzanie, odrzucanie i usuwanie recenzji pozwoli Ci oszczędzić godziny pracy.',
   },
-];
+]
 
 export default function Feature() {
   return (
-    <section className="container mx-auto space-y-8 px-4 py-24 md:px-6 2xl:max-w-[1400px]">
+    <section id="funkcje" className="container mx-auto space-y-8 px-4 py-24 md:px-6 2xl:max-w-[1400px]">
       <div className="space-y-4 text-center">
         <h2 className="text-3xl font-bold">
-          Features that make you productive
+          Funkcje, które usprawnią Twoją pracę
         </h2>
         <p className="text-muted-foreground mx-auto max-w-2xl">
-          Everything you need to get your work done efficiently and effectively.
-          Built for developers, designed for success.
+          Wszystko, czego potrzebujesz, aby wykonywać swoją pracę wydajnie i
+          skutecznie. Zbudowane dla twórców i firm, zaprojektowane dla sukcesu.
         </p>
       </div>
 
@@ -57,5 +60,5 @@ export default function Feature() {
         ))}
       </div>
     </section>
-  );
+  )
 }

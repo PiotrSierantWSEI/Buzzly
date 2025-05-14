@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import {
   BriefcaseIcon,
   FlowerIcon,
@@ -9,38 +9,38 @@ import {
   MountainSnow,
   SearchIcon,
   SettingsIcon,
-} from "lucide-react";
+} from 'lucide-react'
 
 export default function Search() {
   return (
     <>
-      {/* Hero */}
-      <div className="relative overflow-hidden">
+      <div id="search" className="relative overflow-hidden">
         <div className="container mx-auto px-4 py-24 md:px-6 lg:py-32 2xl:max-w-[1400px]">
           <div className="text-center">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-              Insights
+              Wgląd w opinie klientów
             </h1>
-            <p className="text-muted-foreground mt-3 text-xl">
-              Stay in the know with insights from industry experts.
+            <p className="mx-auto text-muted-foreground mt-3 text-xl max-w-3xl">
+              Intuicyjne wyszukiwanie i potężne filtry pomogą Ci odnaleźć każdą
+              recenzję – po produkcie, autorze, ocenie czy statusie moderacji.
             </p>
             <div className="relative mx-auto mt-7 max-w-xl sm:mt-12">
               {/* Form */}
               <form>
                 <div className="bg-background relative z-10 flex space-x-3 rounded-lg border p-3 shadow-lg">
                   <div className="flex-[1_0_0%]">
-                    <Label htmlFor="article" className="sr-only">
-                      Search article
+                    <Label htmlFor="search" className="sr-only">
+                      Wyszukaj opinię
                     </Label>
                     <Input
-                      name="article"
+                      name="search"
                       className="h-full"
-                      id="article"
-                      placeholder="Search article"
+                      id="search"
+                      placeholder="Wyszukaj opinię"
                     />
                   </div>
                   <div className="flex-[0_0_auto]">
-                    <Button size={"icon"}>
+                    <Button size={'icon'}>
                       <SearchIcon />
                     </Button>
                   </div>
@@ -99,29 +99,29 @@ export default function Search() {
               {/* End SVG Element */}
             </div>
             <div className="mt-10 flex flex-wrap justify-center gap-2 sm:mt-20">
-              <Button variant={"outline"}>
+              <Button variant={'outline'}>
                 <BriefcaseIcon className="mr-2 h-auto w-3 flex-shrink-0" />
-                Business
+                Krótkie
               </Button>
-              <Button variant={"outline"}>
+              <Button variant={'outline'}>
                 <SettingsIcon className="mr-2 h-auto w-3 flex-shrink-0" />
-                Strategy
+                Najlepsze
               </Button>
-              <Button variant={"outline"}>
+              <Button variant={'outline'}>
                 <HeartIcon className="mr-2 h-auto w-3 flex-shrink-0" />
-                Health
+                Ulubione
               </Button>
-              <Button variant={"outline"}>
+              <Button variant={'outline'}>
                 <LightbulbIcon className="mr-2 h-auto w-3 flex-shrink-0" />
-                Creative
+                Kratywne
               </Button>
-              <Button variant={"outline"}>
+              <Button variant={'outline'}>
                 <FlowerIcon className="mr-2 h-auto w-3 flex-shrink-0" />
-                Environment
+                Najbardziej pomocne
               </Button>
-              <Button variant={"outline"}>
+              <Button variant={'outline'}>
                 <MountainSnow className="mr-2 h-auto w-3 flex-shrink-0" />
-                Adventure
+                Długie
               </Button>
             </div>
           </div>
@@ -129,5 +129,5 @@ export default function Search() {
       </div>
       {/* End Hero */}
     </>
-  );
+  )
 }

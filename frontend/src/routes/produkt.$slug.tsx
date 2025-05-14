@@ -1,3 +1,5 @@
+import ProdductOverview from "@/components/ProductOverview"
+import { ProductSkeleton } from "@/components/skeletons/product-skeleton"
 import { apiRequest } from "@/lib/axios"
 import { createFileRoute, notFound } from '@tanstack/react-router'
 
@@ -13,7 +15,9 @@ export interface Product {
 }
 export const Route = createFileRoute('/produkt/$slug')({
   component: ProduktPage,
+  pendingComponent: () => <ProductSkeleton />,
   loader: async ({ params: { slug } }) => {
+      await new Promise((resolve) => setTimeout(resolve, 5000))
       try {
         const fetchedProduct = await apiRequest<Product>(
           `/api/product/${slug}`,
@@ -34,13 +38,9 @@ export const Route = createFileRoute('/produkt/$slug')({
 
 function ProduktPage() {
   const product: Product = Route.useLoaderData()
-  console.log('products', product)
   return (
     <main className="w-full relative">
-      <div key={product.id}>
-        <h2>{product.title}</h2>
-      </div>
-      <article dangerouslySetInnerHTML={{ __html: product.description }} />
+      <ProdductOverview product={product} />
     </main>
   )
 }
