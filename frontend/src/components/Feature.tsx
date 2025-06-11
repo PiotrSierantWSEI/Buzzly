@@ -23,7 +23,7 @@ const features = [
     icon: ZapIcon,
     title: 'Analiza',
     description:
-      '	Średnia ocena, liczba opinii, trendy w czasie – wszystko w formie czytelnych wykresów.',
+      '	Średnia ocena, liczba zji, trendy w czasie – wszystko w formie czytelnych wykresów.',
   },
   {
     icon: BarChartIcon,

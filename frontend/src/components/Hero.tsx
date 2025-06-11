@@ -1,6 +1,8 @@
 import { Button } from '@/components/ui/button'
+import { useAuth } from "@/providers/AuthProviders"
 
 export default function HeroSection() {
+  const { isAuthenticated } = useAuth()
   return (
     <>
       <div>
@@ -11,9 +13,9 @@ export default function HeroSection() {
               href="#"
             >
               <span className="hidden md:block">
-                Zaloguj się aby uzyskać dostęp do pełnej funkcjonalności
+                {isAuthenticated ? 'Podziel się recenzją' :'Zaloguj się aby uzyskać dostęp do pełnej funkcjonalności'}
               </span>
-              <span className="md:hidden">Podziel się opinią</span>
+              <span className="md:hidden">Podziel się recenzją</span>
               <span className="bg-muted-foreground/15 inline-flex items-center justify-center gap-x-2 rounded-full px-2.5 py-1.5 text-sm font-semibold">
                 <svg
                   className="h-4 w-4 flex-shrink-0"
@@ -52,7 +54,7 @@ export default function HeroSection() {
           <div className="mt-5 flex items-center justify-center text-muted-foreground gap-x-1 text-sm flex-wrap">
               Zbuduj{' '}
               <strong className="text-black dark:text-white">zaufanie</strong>{' '}
-              klientów dzięki autentycznym opiniom
+              klientów dzięki autentycznym recenzjom
           </div>
         </div>
       </div>
