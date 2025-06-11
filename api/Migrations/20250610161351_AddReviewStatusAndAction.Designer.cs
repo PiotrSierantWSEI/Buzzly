@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using api.Data;
@@ -12,9 +13,11 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250610161351_AddReviewStatusAndAction")]
+    partial class AddReviewStatusAndAction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,8 +116,8 @@ namespace api.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("review_status")
-                        .HasColumnName("status")
-                        .HasDefaultValueSql("'PENDING'::review_status");
+                        .HasDefaultValue("PENDING")
+                        .HasColumnName("status");
 
                     b.Property<DateTime?>("updated_at")
                         .ValueGeneratedOnAdd()

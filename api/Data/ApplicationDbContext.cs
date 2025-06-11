@@ -42,12 +42,6 @@ public partial class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // modelBuilder
-        //     .HasPostgresEnum("moderation_action", ["APPROVE", "REJECT", "EDIT", "DELETE"])
-        //     .HasPostgresEnum("review_report_status", ["PENDING", "RESOLVED", "DISMISSED"])
-        //     .HasPostgresEnum("review_status", ["PENDING", "APPROVED", "REJECTED"])
-        //     .HasPostgresEnum("user_role", ["USER", "ADMIN", "MODERATOR"]);
-
         modelBuilder.Entity<Product>(entity =>
         {
             entity.HasKey(e => e.id).HasName("products_pkey");
@@ -55,15 +49,17 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.created_at)
                 .HasColumnType("timestamp with time zone")
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
-            // .HasDefaultValueSql("timestamptz");
         });
 
         modelBuilder.Entity<Review>(entity =>
         {
             entity.HasKey(e => e.id).HasName("reviews_pkey");
 
-            // entity.Property(e => e.created_at).HasDefaultValueSql("timestamptz");
-            // entity.Property(e => e.updated_at).HasDefaultValueSql("timestamptz");
+            entity.Property(e => e.status)
+                .HasColumnName("status")
+                .HasColumnType("review_status")
+                .HasConversion<string>()
+                .HasDefaultValueSql("'PENDING'::review_status");
 
             entity.Property(e => e.created_at)
                 .HasColumnType("timestamp with time zone")
@@ -85,23 +81,29 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.id).HasName("review_logs_pkey");
 
-            // entity.Property(e => e.timestamp).HasDefaultValueSql("timestamptz");
             entity.Property(e => e.timestamp)
                 .HasColumnType("timestamp with time zone")
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-            entity.HasOne(d => d.performed_byNavigation).WithMany(p => p.review_logs)
+            entity.HasOne(d => d.performed_byNavigation)
+                .WithMany(p => p.review_logs)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("review_logs_performed_by_fkey");
 
-            entity.HasOne(d => d.review).WithMany(p => p.review_logs).HasConstraintName("review_logs_review_id_fkey");
+            entity.HasOne(d => d.review)
+                .WithMany(p => p.review_logs)
+                .HasConstraintName("review_logs_review_id_fkey");
+
+            entity.Property(e => e.action)
+                .HasColumnName("action")
+                .HasColumnType("moderation_action")
+                .HasConversion<string>();
         });
 
         modelBuilder.Entity<Review_version>(entity =>
         {
             entity.HasKey(e => e.id).HasName("review_versions_pkey");
 
-            // entity.Property(e => e.edited_at).HasDefaultValueSql("timestamptz");
             entity.Property(e => e.edited_at)
                 .HasColumnType("timestamp with time zone")
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
@@ -115,7 +117,6 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.id).HasName("users_pkey");
 
-            // entity.Property(e => e.created_at).HasDefaultValueSql("timestamptz");
             entity.Property(e => e.created_at)
                 .HasColumnType("timestamp with time zone")
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");

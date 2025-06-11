@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using api.Data;
 using api.DTOs;
 using api.Models;
@@ -106,7 +102,6 @@ namespace api.Controllers
         {
             try
             {
-
                 var product = await _db.Products
                     .AsNoTracking()
                     .SingleOrDefaultAsync(p => p.id == id);

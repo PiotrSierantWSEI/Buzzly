@@ -6,6 +6,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Models;
 
+public enum ReviewStatus
+{
+    PENDING,
+    APPROVED,
+    REJECTED
+}
+
 public partial class Review
 {
     [Key]
@@ -26,6 +33,7 @@ public partial class Review
     public string content { get; set; } = null!;
 
     public List<string>? images { get; set; }
+    public ReviewStatus status { get; set; } = ReviewStatus.PENDING;
 
     public DateTime? created_at { get; set; }
 

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Models;
+public enum ModerationAction { APPROVE, REJECT, EDIT, DELETE }
 
 public partial class Review_log
 {
@@ -26,4 +27,6 @@ public partial class Review_log
     [ForeignKey("review_id")]
     [InverseProperty("review_logs")]
     public virtual Review review { get; set; } = null!;
+
+    public ModerationAction action { get; set; }
 }
