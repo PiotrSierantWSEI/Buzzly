@@ -46,6 +46,9 @@ namespace api.DTOs
         public string? CoverImageUrl { get; set; }
         [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; set; }
+
+        [JsonPropertyName("reviews_count")]
+        public int? ReviewsCount { get; set; }
     }
     public class ProductsResponseDto
     {

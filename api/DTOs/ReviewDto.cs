@@ -63,4 +63,27 @@ namespace api.DTOs
         public string? Content { get; set; }
         public List<string>? Images { get; set; }
     }
+
+    public class ReviewsResponseDto
+    {
+        public int Id { get; set; }
+        public int ProductId { get; set; }
+        public int? UserId { get; set; }
+        public string? AuthorName { get; set; }
+        public string? AuthorSurname { get; set; }
+        public int Rating { get; set; }
+        public string Content { get; set; } = null!;
+        public List<string>? Images { get; set; }
+        public ReviewStatus Status { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public int? ModeratedBy { get; set; }
+        public DateTime? ModeratedAt { get; set; }
+    }
+
+    public class PagedReviewsResponseDto
+    {
+        public List<ReviewsResponseDto> Reviews { get; set; } = [];
+        public int TotalCount { get; set; }
+    }
 }

@@ -144,7 +144,7 @@ namespace api.Controllers
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetBySlug(string slug)
+        public async Task<IActionResult> GetBySlug(string slug, [FromQuery] bool includeReviewCount = false)
         {
             try
             {
@@ -171,6 +171,11 @@ namespace api.Controllers
                     CoverImageUrl = product.cover_image_url,
                     CreatedAt = product.created_at ?? DateTime.MinValue
                 };
+
+                if (includeReviewCount)
+                {
+                    dto.ReviewsCount = await _db.Reviews.CountAsync(r => r.product_id == product.id);
+                }
 
                 return Ok(dto);
             }
