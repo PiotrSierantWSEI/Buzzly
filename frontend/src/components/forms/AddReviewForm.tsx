@@ -61,11 +61,10 @@ export const AddReviewForm = ({ product, onOpenChange }: { product: Product, onO
     defaultValues: {
       productId: product.id,
       userId: user?.id || undefined,
-      authorName: 'Piotr',
-      authorSurname: 'Sierant',
+      authorName: '',
+      authorSurname: '',
       rating: 5,
-      content:
-        'Już po pierwszym tygodniu stosowania diety zauważyłem znaczną poprawę trawienia i redukcję wzdęć. Przepisy są proste, składniki łatwo dostępne, a efekty czysto zaskakujące – mam więcej energii i czuję się lekko.',
+      content: '',
       imagesCsv: '',
     },
     onSubmit: async ({ value }) => {

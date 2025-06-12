@@ -12,15 +12,15 @@ export interface Product {
   price: number
   cover_image_url: string
   created_at: string
+  reviews_count?: number
 }
 export const Route = createFileRoute('/produkt/$slug')({
   component: ProduktPage,
   pendingComponent: () => <ProductSkeleton />,
   loader: async ({ params: { slug } }) => {
-      await new Promise((resolve) => setTimeout(resolve, 5000))
       try {
         const fetchedProduct = await apiRequest<Product>(
-          `/api/product/${slug}`,
+          `/api/product/${slug}?includeReviewCount=true`,
           'GET',
         )
 

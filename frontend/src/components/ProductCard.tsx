@@ -18,13 +18,13 @@ export function ProductCard({ product }: { product: Product }) {
     <>
       <Card className="w-[300px] group relative space-y-4 overflow-hidden py-0 gap-0">
         <figure className="group-hover:opacity-90">
-          <Button
+          {/* <Button
             variant="ghost"
             size="icon"
             className="absolute top-3 end-3 rounded-full hover:bg-black hover:text-accent-foreground dark:bg-black/70 dark:hover:bg-primary transition-all duration-200"
           >
             <HeartIcon className="size-4" />
-          </Button>
+          </Button> */}
           <img
             className="aspect-square w-full object-cover"
             src={product.cover_image_url}
@@ -49,7 +49,6 @@ export function ProductCard({ product }: { product: Product }) {
           </div>
         </CardContent>
         <CardFooter className="p-0 border-t [.border-t]:pt-0 mt-auto">
-          {/* tutaj modal lub context dialog z dodawaniem opinii. */}
           {isAuthenticated ? (
             <Button
               variant="ghost"
